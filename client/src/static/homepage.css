@@ -1,0 +1,23 @@
+.HomepagecardText{
+    padding: 2%;
+    text-decoration: underline;
+}
+.HomepageSvg{
+    color: red;
+}
+a{
+    cursor: pointer;
+}
+.HomepageRightNav{
+    margin-left: auto;
+}
+.HomepageProfile{
+    height: 50px;
+}
+.HomepageDetailbar{
+    border: 1px solid;
+    border-color: rgb(187, 180, 180);
+    padding: 2%;
+    border-radius: 50px;
+    background-color: rgb(227, 224, 224);
+}
