@@ -45,6 +45,7 @@ const registerCoreMiddleWare = () => {
         logger.info("Done registering all middlewares and routes")
 
     }catch (error){
+        logger.err
         logger.error(error, 'Error registering middlewares and routes' + JSON.stringify(error, undefined, 2));
     }
 };
