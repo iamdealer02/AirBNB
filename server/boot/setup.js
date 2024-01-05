@@ -9,6 +9,10 @@ const PORT = 8080; //USE env file later
 
 const cors = require('cors');
 const session = require('express-session');
+const logger = require('../middleware/winston');
+const morgan = require('morgan')
+const notFound = require('../middleware/notFound');
+const healthCheck = require('../middleware/healthCheck');
 
 // Routes 
 
@@ -17,30 +21,69 @@ const session = require('express-session');
 // mongodb connection 
 
 
-// Middleware Registration
+// Middleware + Route Registration
+const registerCoreMiddleWare = () => {
+    try {
+        app.use(
+            session({
+                secret: 'secret',
+                resave: true,
+                saveUninitialized: true,
+                cookie: {
+                    secure: false,
+                    httpOnly: true,
+                }
+            })
+        ),
+        app.use(morgan('combined', { stream: logger.stream}));
+        app.use(cors());
+        app.use(helmet());
+        app.use(express.json());
+        app.use(healthCheck);
+        app.use(notFound);
+        // Route registration
+        logger.info("Done registering all middlewares and routes")
 
-// Route Registration
+    }catch (error){
+        logger.error(error, 'Error registering middlewares and routes' + JSON.stringify(error, undefined, 2));
+    }
+};
 
 
 
-
-// error handler
-
+// error handler function to be used in the main
+const handleError =() => {
+    process.on("uncaughtException", (error) => {
+        logger.error(error, `Uncaught Exception occured : ${JSON.stringify(error.stack)}`);
+        process.exit(1);
+    });
+}
 
 // start server 
 
 const startApp = async () => {
     try {
         // start by running the middleware registeration
+        await registerCoreMiddleWare();
 
         app.listen(PORT, () => {
             // log the information
             console.log(`Server started on port ${PORT}`);
         })
         // handle errors with function
+        handleError();
 
     }catch(err){
-        
+        logger.err(
+            `startup:: Error while booting the application: ${JSON.stringify(
+                err,
+                undefined,
+                2
+            )}`
+        );
+        throw err;
 
     }
-}
+};
+
+module.exports = {startApp};
