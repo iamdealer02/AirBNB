@@ -10,42 +10,49 @@ const PORT = 8080; //USE env file later
 const cors = require('cors');
 const session = require('express-session');
 const logger = require('../middleware/winston');
-const morgan = require('morgan')
+const morgan = require('morgan');
 const notFound = require('../middleware/notFound');
 const healthCheck = require('../middleware/healthCheck');
 
 // Routes 
-
-
+const homeRoutes = require("../routes/home.routes")
 
 // mongodb connection 
-
+try {
+    mongoose.connect("mongodb://localhost:27017/Airbnb");
+    logger.info("Connected to MongoDB");
+  } catch (error) {
+    logger.error("Error connecting to MongoDB" + error);
+  }
 
 // Middleware + Route Registration
-const registerCoreMiddleWare = () => {
+const registerCoreMiddleWare = async () => {
     try {
         app.use(
             session({
                 secret: 'secret',
-                resave: true,
+                resave: false,
                 saveUninitialized: true,
                 cookie: {
                     secure: false,
                     httpOnly: true,
-                }
+                },
             })
-        ),
+        );
         app.use(morgan('combined', { stream: logger.stream}));
         app.use(cors());
         app.use(helmet());
         app.use(express.json());
         app.use(healthCheck);
-        app.use(notFound);
+       
         // Route registration
+        app.use("/home", homeRoutes);
+        app.use(notFound);
+
         logger.info("Done registering all middlewares and routes")
 
     }catch (error){
-        logger.err
+   
         logger.error(error, 'Error registering middlewares and routes' + JSON.stringify(error, undefined, 2));
     }
 };
