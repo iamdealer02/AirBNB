@@ -16,7 +16,7 @@ const healthCheck = require('../middleware/healthCheck');
 
 // Routes 
 const homeRoutes = require("../routes/home.routes")
-
+const authRoutes = require("../routes/auth.routes")
 // mongodb connection 
 try {
     mongoose.connect("mongodb://localhost:27017/Airbnb");
@@ -46,7 +46,10 @@ const registerCoreMiddleWare = async () => {
         app.use(healthCheck);
        
         // Route registration
-        app.use("/home", homeRoutes);
+        app.use("/", homeRoutes);
+        app.use("/authentication", authRoutes);
+
+
         app.use(notFound);
 
         logger.info("Done registering all middlewares and routes")
