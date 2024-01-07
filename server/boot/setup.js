@@ -15,8 +15,10 @@ const notFound = require('../middleware/notFound');
 const healthCheck = require('../middleware/healthCheck');
 
 // Routes 
-const homeRoutes = require("../routes/home.routes")
-const authRoutes = require("../routes/auth.routes")
+const homeRoutes = require("../routes/home.routes");
+const authRoutes = require("../routes/auth.routes");
+const listingRoutes = require("../routes/listing.routes");
+
 // mongodb connection 
 try {
     mongoose.connect("mongodb://localhost:27017/Airbnb");
@@ -48,7 +50,7 @@ const registerCoreMiddleWare = async () => {
         // Route registration
         app.use("/", homeRoutes);
         app.use("/authentication", authRoutes);
-
+        app.use("/listings", listingRoutes)
 
         app.use(notFound);
 
