@@ -3,7 +3,7 @@ const helmet = require('helmet');
 const mongoose = require('mongoose');
 const app = express();
 const PORT = 8080; //USE env file later
-
+require('dotenv').config(); 
 
 // custom middleware
 
