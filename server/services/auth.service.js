@@ -74,10 +74,23 @@ const login = async (req, res) => {
     }
 };
 
+const logout = async (req, res) => {
+    console.log(req.session.user);
+    if (req.session.user){
+        delete req.session;
+        logger.info(`User logged out successfully`);
+        return res.status(statusCode.success).
+        json({ message: 'User logged out successfully' });
 
+    }
+    logger.error('No session found');
+    return res.status(statusCode.badRequest).
+    json({ message: 'No session found' });
+}
 
 
 module.exports ={
     register,
     login,
+    logout,
 }
