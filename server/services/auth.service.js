@@ -52,7 +52,7 @@ const login = async (req, res) => {
                 req.session.user = {
                     email: result.rows[0].email,
                 };
-
+             
                 const token = jwt.sign({ email: result.rows[0].email }, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
 
                 logger.info(`User: ${result.rows[0].email} logged in successfully`);
