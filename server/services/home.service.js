@@ -10,7 +10,7 @@ const getListings = async (req, res) => {
         const listings = await Listing.find();
         logger.info(`Successfully retrieved listings`);
         res.status(statusCode.success).json({listings});
-        console.log(listings);
+    
     }catch(error){
         logger.error(`Error retrieving listings: 
         ${JSON.stringify(error, undefined, 2)}`);

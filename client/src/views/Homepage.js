@@ -1,11 +1,12 @@
 import React from 'react'
 
 import '../static/homepage.css'
-
+import { Listings } from '../components/Listings'
 
 
 function Homepage() {
   return (
+    
     <div className='card'>
         <div className='card-header text-center h5 HomepagecardText fw-bold'>
         Learn about Guest Favorites, the most loved homes on Airbnb
@@ -76,7 +77,7 @@ function Homepage() {
       </ul>
     </div>
     <div className='card-body'>
-      
+      <Listings />
     </div>
     </div>
     

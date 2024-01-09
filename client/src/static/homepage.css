@@ -21,3 +21,11 @@ a{
     border-radius: 50px;
     background-color: rgb(227, 224, 224);
 }
+.HomePageLisingImg{
+    border-radius: 10px;
+    height: 200px;
+    width: 250px;
+}
+.HomepageListing{
+    cursor: pointer;
+}
