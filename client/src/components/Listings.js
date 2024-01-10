@@ -19,15 +19,18 @@ export const Listings = () => {
         <div className='row'>
         {list.map((item) => (
             <div className='col-md-3 mb-4'>
-                <div className='HomepageListing d-flex flex-column' key={item._id} >
-                    {item.thumbnail_url ? 
-                    <img className='HomePageLisingImg' src={item.picture_url.url} alt={`Thumbnail for ${item.name}`} />:
-                    <img className='HomePageLisingImg' src={item.thumbnail_url} alt={`Thumbnail for ${item.name}`} />
-                    }
-                
-                {item.city}, {item.country} <br/>
-                ${item.price}
-            </div>
+                <a href={`./listing/${item._id}`}>
+                    <div className='HomepageListing d-flex flex-column' key={item._id} >
+                        {item.thumbnail_url ? 
+                        <img className='HomePageLisingImg' src={item.picture_url.url} alt={`Thumbnail for ${item.name}`} />:
+                        <img className='HomePageLisingImg' src={item.thumbnail_url} alt={`Thumbnail for ${item.name}`} />
+                        }
+                    
+                    {item.city}, {item.country} <br/>
+                    ${item.price}
+                </div>
+                </a>
+
             </div>
 
         ))}
