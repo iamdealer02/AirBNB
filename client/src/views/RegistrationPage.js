@@ -2,15 +2,13 @@ import React from 'react'
 import '../static/auth.css'
 import { AuthForm } from '../components/AuthForm';
 
-function LoginPage() {
-
-
+function RegistrationPage() {
   return (
     <div>
           <div className="container mt-5">
         <div className="row justify-content-center log" >
             <div className="login-board ">
-                <AuthForm action="login"/>
+                <AuthForm action="register"/>
                 <div className="d-flex flex-row align-items-center">
                 <hr className = "LoginPagehr"/>
                       <span className="or-text ml-1 mr-1">or</span>
@@ -34,8 +32,8 @@ function LoginPage() {
                     <hr className = "LoginPagehr"  />
                 </div>
                 
-                <div className="text-center mt-3">Don't have an account? </div>
-                <a href='/register' ><button className="btn btn-dark btn-block ">Register</button></a>
+                <div className="text-center mt-3">Already have an account? </div>
+                <a href='/login' ><button className="btn btn-dark btn-block ">LOGIN</button></a>
 
                 <div className=" text-center "><img className='LoginPageimg' src="https://cdn-icons-gif.flaticon.com/11870/11870996.gif"/></div>
             </div>
@@ -45,4 +43,4 @@ function LoginPage() {
   )
   }
 
-export default LoginPage; 
+export default RegistrationPage

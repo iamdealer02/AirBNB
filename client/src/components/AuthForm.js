@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-export const AuthForm = () => {
+export const AuthForm = ({action}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -9,8 +9,14 @@ export const AuthForm = () => {
     e.preventDefault();
 
     try {
-        console.log(email, password)
-      const response = await axios.post('http://localhost:8080/authentication/login', {
+        let url;
+        if (action === 'login'){
+            url = 'http://localhost:8080/authentication/login'
+        } else if (action === 'register'){
+            url = 'http://localhost:8080/authentication/register'
+        }
+        
+      const response = await axios.post(url, {
         email: email,
         password: password,
       });
@@ -50,7 +56,7 @@ export const AuthForm = () => {
         </div>
         <div className="form-group">
           <button type="submit" className="btn btn-dark btn-block">
-            Login
+          {action === 'login' ? 'Login' : 'Register'}
           </button>
         </div>
       </form>
