@@ -1,0 +1,9 @@
+.LoginPagehr {
+    flex-grow: 1;
+    margin: 0 2px;
+    border-top: 1px solid #000;
+  }
+.LoginPageimg{
+    height: 10rem;
+}
+  

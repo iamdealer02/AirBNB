@@ -7,6 +7,7 @@ const register = async(req, res) => {
     //check
     const { email , password } = req.body;
     // check if email is valid 
+    
     if (!email || !password){
         return res.status(statusCode.missingParameters)
         .json({message: 'Missing required fields'})
@@ -38,7 +39,7 @@ const register = async(req, res) => {
 
 const login = async (req, res) => {
     const { email, password } = req.body;
-
+    console.log('Request Body:', req.body);
     if (!email || !password) {
         return res.status(statusCode.missingParameters)
             .json({ message: 'Parameters missing' });
