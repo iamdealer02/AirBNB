@@ -1,7 +1,244 @@
 .hostImage{
-    height: 100px;
+    height: 90px;
     margin-top: 50px;
+    border-radius: 50%;
 }
 .hostDetails{
-    width: 50%;
+    
+    display: flex;
+    height: fit-content;
+    flex-direction: row;
+   
+    padding-bottom: 3%;
+    margin-right: 3%;
+    border-bottom: #b4b2b2 1px solid;
+    border-top: #b4b2b2 1px solid;
 }
+.hostName{
+    margin-top: 12%;
+    margin-left: 5%;
+    font-size: 18px;
+    font-weight: 600;
+  
+}
+.listingHostPolicies{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-bottom: #b4b2b2 1px solid;;
+
+}
+.policy{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    
+}
+.policyName{
+    width: fit-content;
+    flex: 1;
+    ;
+    
+    text-align: center;
+}
+
+.policyDescription{
+    width: fit-content;
+    flex: 3;
+    font-size: 13px;
+    color: rgb(123, 123, 123);
+    
+}
+.policyIcon img{
+    height: 50px;
+;
+}
+.policyIcon{
+    margin-right: 2%;
+    margin-top: 3%;
+    height: fit-content;
+    
+}
+.listingDetails{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 2%;
+}
+.bookingCard{
+    
+    border: solid rgb(210, 210, 210) 1px;
+    border-radius: 10px;
+    padding: 6%;
+    width: 50vh;
+    box-shadow: 0px 0px 10px 0px rgb(210, 210, 210);    
+}
+.bookingCardTime {
+    border: solid rgb(45, 44, 44) 1px;
+    border-radius: 10px;
+    
+}
+.bookingCardTimeCheck{
+    display: flex;
+    flex-direction: row;
+   
+
+   
+}
+.price{
+    font-size: 20px;
+    font-weight: bold;
+    padding: 2%;
+}
+label{
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: 3%;
+    margin-bottom: 0;
+    
+}
+input{
+    font-size: 10px;
+}
+.dateInput{
+    /* change the way dates are displayed*/
+    width: 100%;
+    border: none;
+    padding: 1%;
+    margin: 1%;
+    color: rgb(123, 123, 123);
+
+
+}
+.checkIn{
+    border-right: solid rgb(30, 28, 28) 1px;
+    
+    padding: 1%;
+    margin-top: 0;
+    width:120px;
+} 
+.checkOut{
+    padding: 1%;
+    margin-top: 0;
+    width: 120px;
+    
+}
+/* Assuming some basic styling for the container */
+.guestNumber {
+    display: flex;
+    flex-direction: column;
+    
+    border-top:  solid rgb(30, 28, 28) 1px;
+  }
+  
+  /* Styling for the label */
+  .guestNumber label {
+    font-size: 13px;
+    margin-bottom: 5px;
+    color: #333; 
+  }
+  
+  /* Styling for the select dropdown */
+  .guestSelect {
+   
+    width: 100%;
+    padding: 10px;
+    font-size: 13px;
+    border: none
+  }
+  
+  /* Styling for each option in the dropdown */
+  .guestSelectOption {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  
+  /* Styling for guest type and description */
+  .guestType {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .guestName {
+    font-weight: bold;
+  }
+  
+  .guestDescription {
+    font-size: 8px;
+    color: #666;
+  }
+  
+  /* Styling for guest number selection */
+  .guestNumberSelect {
+    display: flex;
+    align-items: center;
+    
+  }
+  
+  .guestMinus,
+  .guestPlus {
+    cursor: pointer;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    margin: 0 5px;
+  }
+  
+  .guestNumber {
+    font-size: 10px;
+    font-weight: bold;
+    padding: 10px;
+    
+  }
+  .dropdownImage{
+      height: 20px;
+      width: 20px;
+  }
+  .guestNumberTitle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .guestNumberValue{
+    font-size: small;
+    color: rgb(123, 123, 123);
+    font-weight: lighter;
+  }
+  .bookingReserveButton{
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 2%;
+    background-color: #ff385c;
+    color: white;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 5%;
+
+  }
+  .bookingFooterText{
+    margin-top: 2%;
+    font-size: 9px;
+    color: rgb(87, 87, 87);
+    font-weight: light;
+    text-align: center;
+  }
+  .priceBreakdown{
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 2%;
+  }
+  .priceBreakdownDetailsPrice{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .horizontalLine{
+    border-top: 1px solid rgb(62, 61, 61);
+    margin-top: 2%;
+  }

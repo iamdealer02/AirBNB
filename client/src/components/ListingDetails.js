@@ -1,31 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import React from 'react';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBed, faShower } from '@fortawesome/free-solid-svg-icons';
+import { Bookings } from '../components/Bookings';
 
-export const ListingDetails = () => {
-  const [details, setDetails] = useState({});
-  const { listing_id } = useParams();
-
-  // Fetch the data from the backend
-  async function getListingDetails(listing_id) {
-    try {
-      const response = await axios.get(`http://localhost:8080/listings/${listing_id}`);
-      setDetails(response.data.message[0]);
-    } catch (error) {
-      console.error('Error fetching listing details:', error);
-    }
-  }
-
-  // Log the details whenever it changes
-  useEffect(() => {
-    console.log(details);
-  }, [details]);
-
-  useEffect(() => {
-    getListingDetails(listing_id);
-  }, [listing_id]);
+export const ListingDetails = ({details}) => {
 
   return (
     <div>
@@ -43,29 +22,57 @@ export const ListingDetails = () => {
 
         </div>
 
-        {details.summary}
-        <div className='listingDetails d-flex flex-row'>
-        <div className='hostDetails card'>
-            <div className='card-header text-center h5'> Host Details</div>
-            <div className='card-body'>
-                <div className='d-flex flex-row '>
-                <img className='rounded-circle hostImage' src={details.host_picture_url}/>
         
-                <div className='d-flex flex-column'>
-                <div className='mt-5 ml-5 h5'>  {details.host_name}</div>
-                <div className='ml-5 '>{details.host_location} </div>
-                <div className='ml-5 '>Since :  {details.host_since} </div>
-                <div className='ml-5'> {details.host_about}</div>
+        <div className='listingDetails'>
+            <div className='listingHostPolicies'>
+                <div className='hostDetails '>
+                <div >
+                    <img className='hostImage' src={details.host_picture_url} />
                 </div>
-
+                <div className='hostName'>
+                    Hosted By {details.host_name}
                 </div>
+                
+                </div>
+                <div className='listingPolicies'>
+                    {  details.cancellation_policy ?
+                    <div className='policy'>
+                         <div className='policyIcon'><img src='https://cdn-icons-png.flaticon.com/128/13479/13479865.png' /> </div>
+                         <div className='policySummary'>
+                         <div className='policyName'>Cancellation Policy </div>
+                        <div className='policyDescription'>{details.cancellation_policy}</div>
+                        </div>
 
+                    </div>  : null
+}
+                {details.house_rules ?
+                    <div className='policy'>
+                        <div className='policyIcon'><img src='https://cdn-icons-png.flaticon.com/128/11261/11261480.png' /> </div>
+                        <div className='policySummary'>
+                        <div className='policyName'>House Rules </div>
+                        <div className='policyDescription'>{details.house_rules}</div>
+                        </div>
+
+                    </div>  : null
+        }   
+                </div>
             </div>
-           
+
+
+            
+            <div>
+        
+        <Bookings details = {details}/>
+        </div>
+        </div>
+
+        <div className='locationinmap'>
 
         </div>
-        <div className='card'>
-            <div className='card-header'>Amenities</div>
+        <div className='d-flex flex-row'>
+
+        <div className='amenties'>
+            <div className='amenities'>Amenities</div>
             <div className='card-body d-flex flex-cloumn'>
             {details.amenities && details.amenities.length > 0 ? (
     <ul>
@@ -82,11 +89,6 @@ export const ListingDetails = () => {
             )}
             </div>
         </div>
-
-        </div>
-
-        <div className='locationinmap'>
-
         </div>
       </div>
     </div>
