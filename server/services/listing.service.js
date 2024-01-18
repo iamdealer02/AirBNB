@@ -80,8 +80,54 @@ const addToFav = async(req, res) => {
     }
     
 }
+const priceBreakdown = async (req, res) => {
+    const listingId = req.params.listingId;
+    let { startDate, endDate } = req.body;
+    startDate = startDate.split('-').reverse().join('-');
+    endDate = endDate.split('-').reverse().join('-');
+  
+    if (!listingId) {
+      return res.status(statusCode.badRequest).json({ error: 'Missing path variables' });
+    }
+  
+    try {
+      const listingDetails = await listingModel.find({ _id: listingId });
+
+  
+      if (listingDetails.length === 0) {
+        return res.status(statusCode.error).json({ error: "Listing not found" });
+      }
+  
+      const price = parseFloat(listingDetails[0].price);
+      const cleaningFee = !isNaN(parseFloat(listingDetails[0].cleaning_fee)) ?
+      parseFloat(listingDetails[0].cleaning_fee) : 0;
+    
+
+     if (cleaningFee === null) {
+        cleaningFee = 0;
+      }
+      console.log(cleaningFee, price)
+      const start = new Date(startDate);
+      const end = new Date(endDate);
+  
+      if (start >= end) {
+        return res.status(statusCode.error).json({ error: "Invalid date range" });
+      }
+    
+      const days = (end - start) / (1000 * 3600 * 24);
+      const totalPrice = days * price + cleaningFee;
+   
+      res.status(statusCode.success).json({ totalPrice });
+    } catch (error) {
+      console.error("Error processing price breakdown:", error);
+      res.status(statusCode.error).json({ error: "Internal server error" });
+    }
+  };
+  
+
 
 module.exports = {
     listing_details,
     addToFav,
+    priceBreakdown
 }
